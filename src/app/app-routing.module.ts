@@ -14,6 +14,9 @@ const routes: Routes = [
       {path: 'cart', component: CartComponent},
       {path: 'product/:id', component: ProductComponent}
     ]
+  },
+  {
+    path: 'admin', loadChildren: './admin/admin.module#AdminModule'
   }
 ];
 
