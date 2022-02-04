@@ -8,6 +8,7 @@ import {OrdersComponent} from './orders/orders.component';
 import {DashboardPageComponent} from './dashboard-page/dashboard-page.component';
 import {AddPageComponent} from './add-page/add-page.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {AuthGuard} from "../shared/auth.guard";
 
 @NgModule({
     declarations: [
@@ -24,10 +25,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
             {path: '', component: AdminLayoutComponent, children: [
                     {path: '', redirectTo: '/admin/login', pathMatch: 'full'},
                     {path: 'login', component: LoginPageComponent},
-                    {path: 'product/:id/edit', component: EditPageComponent},
-                    {path: 'orders', component: OrdersComponent},
-                    {path: 'dashboard', component: DashboardPageComponent},
-                    {path: 'add', component: AddPageComponent}
+                    {path: 'product/:id/edit', component: EditPageComponent, canActivate: [AuthGuard]},
+                    {path: 'orders', component: OrdersComponent, canActivate: [AuthGuard]},
+                    {path: 'dashboard', component: DashboardPageComponent, canActivate: [AuthGuard]},
+                    {path: 'add', component: AddPageComponent, canActivate: [AuthGuard]}
                 ]}
         ]),
         FormsModule,
