@@ -9,6 +9,7 @@ import {DashboardPageComponent} from './dashboard-page/dashboard-page.component'
 import {AddPageComponent} from './add-page/add-page.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AuthGuard} from "../shared/auth.guard";
+import {QuillModule} from "ngx-quill";
 
 @NgModule({
     declarations: [
@@ -21,6 +22,7 @@ import {AuthGuard} from "../shared/auth.guard";
     ],
     imports: [
         CommonModule,
+        QuillModule.forRoot(),
         RouterModule.forChild([
             {path: '', component: AdminLayoutComponent, children: [
                     {path: '', redirectTo: '/admin/login', pathMatch: 'full'},
