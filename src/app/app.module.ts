@@ -9,6 +9,8 @@ import { CartComponent } from './cart/cart.component';
 import { ProductComponent } from './product/product.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from "./shared/auth.interceptor";
+import { ProductPageComponent } from './product-page/product-page.component';
+import {QuillModule} from "ngx-quill";
 
 @NgModule({
   declarations: [
@@ -16,13 +18,15 @@ import {AuthInterceptor} from "./shared/auth.interceptor";
     MainLayoutComponent,
     MainPageComponent,
     CartComponent,
-    ProductComponent
+    ProductComponent,
+    ProductPageComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        QuillModule.forRoot(),
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
