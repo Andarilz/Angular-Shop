@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from "../../environments/environment";
 import {map} from "rxjs/operators";
-import {FBresponse} from "./interfaces";
+import {FBresponse, Product} from "./interfaces";
 
 
 @Injectable({
@@ -33,6 +33,17 @@ export class ProductService {
                         id: key,
                         data: new Date(res[key].date)
                     }));
+            }));
+    }
+
+    getById(id) {
+        return this.http.get(`${environment.URL}/products/${id}.json`)
+            .pipe(map((res: Product) => {
+                return {
+                        ...res,
+                        id,
+                        data: new Date(res.date)
+                    };
             }));
     }
 }
