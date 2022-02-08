@@ -46,6 +46,14 @@ export class ProductService {
                     };
             }));
     }
+
+    remove(id) {
+        return this.http.delete(`${environment.URL}/products/${id}.json`);
+    }
+
+    update(product: Product) {
+        return this.http.patch(`${environment.URL}/products/${product.id}.json`, product);
+    }
 }
 
 
