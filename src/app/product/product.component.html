@@ -1,14 +1,17 @@
 
-<div class="text-center">
-    <h2>{{ product.title }}</h2>
+<div *ngIf="product">
+    <div class="text-center">
+        <h2>{{ product.title }}</h2>
 
-    <div class="flex-center">
-        <quill-view-html [content]="product.photo"></quill-view-html>
+        <div class="flex-center">
+            <quill-view-html [content]="product.photo"></quill-view-html>
+        </div>
+
+        <h3>Price: {{product.price}}$</h3>
+
+        <button [routerLink]="['/product', product.id]" class="btn btn-dark">Open</button>
+
+        <button routerLink="/cart" class="btn btn-dark">Add to cart</button>
     </div>
-
-    <h3>Price: {{product.price}}$</h3>
-
-    <button [routerLink]="['/product', product.id]" class="btn btn-dark">Open</button>
-
-    <button routerLink="/cart" class="btn btn-dark">Add to cart</button>
 </div>
+

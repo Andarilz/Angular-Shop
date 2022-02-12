@@ -10,6 +10,7 @@ import {AddPageComponent} from './add-page/add-page.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AuthGuard} from "../shared/auth.guard";
 import {QuillModule} from "ngx-quill";
+import {SearchPipe} from "../shared/search.pipe";
 
 @NgModule({
     declarations: [
@@ -18,23 +19,26 @@ import {QuillModule} from "ngx-quill";
         EditPageComponent,
         OrdersComponent,
         DashboardPageComponent,
-        AddPageComponent
+        AddPageComponent,
+        SearchPipe
     ],
     imports: [
         CommonModule,
         QuillModule.forRoot(),
         RouterModule.forChild([
-            {path: '', component: AdminLayoutComponent, children: [
+            {
+                path: '', component: AdminLayoutComponent, children: [
                     {path: '', redirectTo: '/admin/login', pathMatch: 'full'},
                     {path: 'login', component: LoginPageComponent},
                     {path: 'product/:id/edit', component: EditPageComponent, canActivate: [AuthGuard]},
                     {path: 'orders', component: OrdersComponent, canActivate: [AuthGuard]},
                     {path: 'dashboard', component: DashboardPageComponent, canActivate: [AuthGuard]},
                     {path: 'add', component: AddPageComponent, canActivate: [AuthGuard]}
-                ]}
+                ]
+            }
         ]),
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
     ],
     exports: []
 })
