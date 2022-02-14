@@ -1,4 +1,4 @@
-<div class="container" *ngIf="cartProducts.length; else empty">
+<div class="container" *ngIf="cartProducts.length > 0; else empty">
     <h2 class="text-center">Your order</h2>
 
 
@@ -8,9 +8,9 @@
             <td>{{cartProduct.type}}</td>
             <td>{{cartProduct.title}}</td>
             <td>
-                <button class="btn btn-danger">Delete</button>
+                <button class="btn btn-danger" (click)="delete(cartProduct)">Delete</button>
             </td>
-            <td>{{cartProduct.price}}</td>
+            <td>{{cartProduct.price}} ₽</td>
         </tr>
         </tbody>
     </table>
@@ -18,9 +18,64 @@
     <hr>
 
     <b class="right">Total: {{totalPrice}}₽</b>
+
+
+    <h2 class="text-center">Delivery: </h2>
+
+
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+        <div class="form-control">
+            <label for="name">Name</label>
+            <input type="text" id="name" formControlName="name">
+            <div *ngIf="form.get('name').touched && form.get('name').invalid" class="validation">
+                <small *ngIf="form.get('name').errors.required">Введите свое имя</small>
+            </div>
+        </div>
+
+        <div class="form-control">
+            <label for="phone">Phone</label>
+            <input type="text" id="phone" formControlName="phone">
+            <div *ngIf="form.get('phone').touched && form.get('phone').invalid" class="validation">
+                <small *ngIf="form.get('phone').errors.required">Введите свой номер телефона</small>
+                <small *ngIf="form.get('phone').errors.minlength">
+                    Пароль должен иметь не менее {{ form.get('phone').errors.minlength.requiredLength }} символов
+                    Введено {{ form.get('phone').errors.minlength.actualLength }} символов
+                </small>
+            </div>
+        </div>
+
+        <div class="form-control">
+            <label for="address">Address</label>
+            <input type="text" id="address" formControlName="address">
+            <div *ngIf="form.get('address').touched && form.get('address').invalid" class="validation">
+                <small *ngIf="form.get('address').errors.required">Введите свой адрес</small>
+            </div>
+        </div>
+
+        <div class="form-control">
+            <label for="payment">Тип оплаты: </label>
+            <select id="payment" formControlName="payment">
+                <option value="Cash">Наличными</option>
+                <option value="Delivery">Карточкой</option>
+            </select>
+            <div *ngIf="form.get('payment').touched && form.get('payment').invalid" class="validation">
+                <small *ngIf="form.get('payment').errors.required">Выберите тип оплаты</small>
+            </div>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary btn-block" [disabled]="submitted || form.invalid">Отправить</button>
+    </form>
+
+
+
+
+
 </div>
 
 <ng-template #empty>
-    <h2 class="text-center">Cart is empty...Select products</h2>
+    <h2 class="text-center">Cart is empty. Select products</h2>
 </ng-template>
 

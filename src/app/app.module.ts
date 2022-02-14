@@ -12,6 +12,7 @@ import { AuthInterceptor } from "./shared/auth.interceptor";
 import { ProductPageComponent } from './product-page/product-page.component';
 import { QuillModule } from "ngx-quill";
 import { CortingPipe } from './shared/corting.pipe';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,9 @@ import { CortingPipe } from './shared/corting.pipe';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    QuillModule.forRoot()
+    QuillModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     {
