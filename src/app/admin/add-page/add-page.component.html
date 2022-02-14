@@ -34,7 +34,7 @@
 
 
     <div class="form-control">
-        <label for="info">Info</label>
+        <label for="info">Information</label>
         <quill-editor id="info" formControlName="info"></quill-editor>
         <div *ngIf="form.get('info').touched && form.get('info').invalid" class="validation">
             <small *ngIf="form.get('info').errors.required">Введите информацию о продукте</small>
@@ -45,7 +45,7 @@
         <label for="price">Price</label>
         <input type="text" id="price" formControlName="price">
         <div *ngIf="form.get('price').touched && form.get('price').invalid" class="validation">
-            <small *ngIf="form.get('price').errors.required">Укажите цену продукта</small>
+            <small *ngIf="form.get('price').errors.required">Укажите цену продукта(₽)</small>
         </div>
     </div>
 
