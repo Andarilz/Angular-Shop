@@ -16,6 +16,7 @@ export class CartComponent implements OnInit {
   totalPrice = 0;
   form: FormGroup;
   submitted = false;
+  ended = '';
 
   constructor(private productService: ProductService, private router: Router, private orderService: OrderService) { }
 
@@ -42,6 +43,7 @@ export class CartComponent implements OnInit {
     const order = {
       name: this.form.value.name,
       phone: this.form.value.phone,
+      price: this.totalPrice,
       address: this.form.value.address,
       payment: this.form.value.payment,
       order: this.cartProducts,
@@ -51,6 +53,7 @@ export class CartComponent implements OnInit {
     this.orderService.create(order).subscribe(() => {
       this.form.reset();
       this.submitted = false;
+      this.ended = 'Доставка оформлена';
     });
   }
 

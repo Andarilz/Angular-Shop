@@ -1,5 +1,5 @@
 
-<div *ngIf="product">
+<div *ngIf="product; else load">
     <div class="text-center">
         <h2>{{ product.title }}</h2>
 
@@ -7,11 +7,15 @@
             <quill-view-html [content]="product.photo"></quill-view-html>
         </div>
 
-        <h3>Price: {{product.price}}</h3>
+        <h3>Цена: {{product.price}} ₽</h3>
 
-        <button [routerLink]="['/product', product.id]" class="btn btn-dark">Open</button>
+        <button [routerLink]="['/product', product.id]" class="btn btn-dark">Открыть</button>
 
-        <button routerLink="/cart" class="btn btn-dark" (click)="addProduct(product)">Add to cart</button>
+        <button routerLink="/cart" class="btn btn-dark" (click)="addProduct(product)">Добавить в корзину</button>
     </div>
 </div>
+
+<ng-template>
+    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</ng-template>
 

@@ -1,5 +1,10 @@
-<div *ngIf="products$ | async as products" class="dashboard">
+<div *ngIf="products$ | async as products; else load" class="dashboard">
     <app-product *ngFor="let product of products | corting: this.productService.type" [product]="product" class="box"></app-product>
 </div>
 
+<ng-template #load>
+    <div class="text-center">
+        <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+</ng-template>
 

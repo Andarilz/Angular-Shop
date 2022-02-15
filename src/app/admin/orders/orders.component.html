@@ -1,1 +1,47 @@
-<p>orders works!</p>
+<div *ngIf="orders; else loading">
+    <h2 class="text-center">Dashboard of orders</h2>
+
+    <div class="form-control">
+        <input type="text" placeholder="Find an order" [(ngModel)]="orderFind">
+    </div>
+    <table>
+        <thead>
+        <tr>
+            <th>Number</th>
+            <th>Date</th>
+            <th>Phone</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Products</th>
+            <th>Price</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let order of orders | search: orderFind; let idx = index">
+            <td>{{idx + 1}}</td>
+            <td>{{ order.date | date: 'medium'}}</td>
+            <td>{{ order.phone }}</td>
+            <td>{{ order.name }}</td>
+            <td>{{ order.address }}</td>
+            <td>
+                <div *ngFor="let prod of order.order">
+                    {{prod.title}}
+                </div>
+            </td>
+            <td>
+                <div>{{ order.price }}₽</div>
+                <div>{{ order.payment}}</div>
+            </td>
+            <td>
+                <button class="btn btn-success" (click)="delete(order.id)">Completed</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<ng-template #loading>
+    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</ng-template>

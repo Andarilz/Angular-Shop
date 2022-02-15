@@ -24,23 +24,23 @@ export class OrderService {
             }
         ));
   }
-  //
-  // getAll() {
-  //   return this.http.get(`${environment.URL}/products.json`)
-  //       .pipe(map(res => {
-  //         return Object.keys(res)
-  //             .map(key => ({
-  //               ...res[key],
-  //               id: key,
-  //               data: new Date(res[key].date)
-  //             }));
-  //       }));
-  // }
-  //
-  //
-  // remove(id) {
-  //   return this.http.delete(`${environment.URL}/products/${id}.json`);
-  // }
+
+  getAll() {
+    return this.http.get(`${environment.URL}/orders.json`)
+        .pipe(map(res => {
+          return Object.keys(res)
+              .map(key => ({
+                ...res[key],
+                id: key,
+                data: new Date(res[key].date)
+              }));
+        }));
+  }
+
+
+  remove(id) {
+    return this.http.delete(`${environment.URL}/orders/${id}.json`);
+  }
 
 
 }

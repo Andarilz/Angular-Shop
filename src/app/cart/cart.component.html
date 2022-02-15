@@ -1,5 +1,5 @@
 <div class="container" *ngIf="cartProducts.length > 0; else empty">
-    <h2 class="text-center">Your order</h2>
+    <h2 class="text-center">Ваш заказ</h2>
 
 
     <table>
@@ -8,7 +8,7 @@
             <td>{{cartProduct.type}}</td>
             <td>{{cartProduct.title}}</td>
             <td>
-                <button class="btn btn-danger" (click)="delete(cartProduct)">Delete</button>
+                <button class="btn btn-danger" (click)="delete(cartProduct)">Удалить</button>
             </td>
             <td>{{cartProduct.price}} ₽</td>
         </tr>
@@ -17,37 +17,37 @@
 
     <hr>
 
-    <b class="right">Total: {{totalPrice}}₽</b>
+    <b class="right">Всего: {{totalPrice}}₽</b>
 
 
-    <h2 class="text-center">Delivery: </h2>
+    <h2 class="text-center">Доставка: </h2>
 
-
+    <div *ngIf="ended" class="text-center text-danger">{{ended}}</div>
 
     <form [formGroup]="form" (ngSubmit)="submit()">
 
         <div class="form-control">
-            <label for="name">Name</label>
+            <label for="name">Имя и фамилия</label>
             <input type="text" id="name" formControlName="name">
             <div *ngIf="form.get('name').touched && form.get('name').invalid" class="validation">
-                <small *ngIf="form.get('name').errors.required">Введите свое имя</small>
+                <small *ngIf="form.get('name').errors.required">Введите свое имя и фамилию</small>
             </div>
         </div>
 
         <div class="form-control">
-            <label for="phone">Phone</label>
+            <label for="phone">Телефон</label>
             <input type="text" id="phone" formControlName="phone">
             <div *ngIf="form.get('phone').touched && form.get('phone').invalid" class="validation">
                 <small *ngIf="form.get('phone').errors.required">Введите свой номер телефона</small>
                 <small *ngIf="form.get('phone').errors.minlength">
-                    Пароль должен иметь не менее {{ form.get('phone').errors.minlength.requiredLength }} символов
+                    Телефон должен иметь не менее {{ form.get('phone').errors.minlength.requiredLength }} символов
                     Введено {{ form.get('phone').errors.minlength.actualLength }} символов
                 </small>
             </div>
         </div>
 
         <div class="form-control">
-            <label for="address">Address</label>
+            <label for="address">Адрес</label>
             <input type="text" id="address" formControlName="address">
             <div *ngIf="form.get('address').touched && form.get('address').invalid" class="validation">
                 <small *ngIf="form.get('address').errors.required">Введите свой адрес</small>
@@ -76,6 +76,6 @@
 </div>
 
 <ng-template #empty>
-    <h2 class="text-center">Cart is empty. Select products</h2>
+    <h2 class="text-center">Корзина пуста</h2>
 </ng-template>
 
