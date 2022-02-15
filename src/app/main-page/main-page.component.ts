@@ -10,7 +10,7 @@ import {Observable} from "rxjs";
 export class MainPageComponent implements OnInit {
   products$: Observable<any>;
 
-  constructor(private productService: ProductService) { }
+  constructor(public productService: ProductService) { }
 
   ngOnInit() {
     this.products$ = this.productService.getAll();

@@ -13,6 +13,8 @@ import { ProductPageComponent } from './product-page/product-page.component';
 import { QuillModule } from "ngx-quill";
 import { CortingPipe } from './shared/corting.pipe';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     HttpClientModule,
     QuillModule.forRoot(),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     {

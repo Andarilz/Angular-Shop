@@ -14,7 +14,7 @@ export class ProductService {
     type = 'Phone';
     cartProduct: Product[] = [];
 
-    constructor(private http: HttpClient) {}
+    constructor(public http: HttpClient) {}
 
     create(product) {
         return this.http.post(`${environment.URL}/products.json`, product)
